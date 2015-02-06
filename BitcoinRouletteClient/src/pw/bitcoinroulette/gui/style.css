@@ -1,0 +1,13 @@
+.green {
+	-fx-background-color: green;
+	-fx-border-color: white;
+}
+
+.red {
+	-fx-background-color: red;
+}
+
+.black{
+	-fx-background-color: #191919;
+}
+

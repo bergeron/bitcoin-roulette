@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.*?>
+
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-image: url('gui/images/felt.jpg'); -fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="641.0" prefWidth="1022.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: white;">
+               <children>
+                  <HBox prefHeight="371.0" prefWidth="1024.0">
+                     <children>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="350.0" style="-fx-background-color: rgba(0, 0, 0, 0);">
+                           <children>
+                              <ImageView fx:id="wheel" fitHeight="337.0" fitWidth="351.0" layoutX="4.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/wheel.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle fx:id="ball" fill="WHITE" layoutX="170.0" layoutY="68.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane fx:id="boardPane" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="670.0" style="-fx-background-color: rgba(0, 0, 0, 0);">
+                           <children>
+                              <GridPane fx:id="grid" layoutX="181.0" layoutY="104.0" maxHeight="367.0" prefHeight="367.0" prefWidth="668.0" stylesheets="@../style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="7.0" prefWidth="7.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="111.18032786885246" minHeight="10.0" percentHeight="20.0" prefHeight="111.18032786885246" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="118.18032786885246" minHeight="0.0" percentHeight="20.0" prefHeight="77.74" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="192.74" minHeight="10.0" percentHeight="20.0" prefHeight="90.73999999999998" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="192.74" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="100.0" minHeight="10.0" percentHeight="14.0" prefHeight="41.879999999999995" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="100.0" minHeight="10.0" percentHeight="14.0" prefHeight="81.88" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.rowSpan="5">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="103.0" rotate="-90.0" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+      
+                                    <Pane GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="6" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="7" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="8" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="9" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="10" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="11" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="12" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="13" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="14" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="15" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="16" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="17" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="18" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="19" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="20" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="21" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="22" GridPane.rowIndex="0" />
+                                    <Pane GridPane.columnIndex="23" GridPane.rowIndex="0" />
+      
+                                    <Pane GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="10" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="12" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="13" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="14" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="15" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="16" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="17" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="18" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="19" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="20" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="21" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="22" GridPane.rowIndex="2" />
+                                    <Pane GridPane.columnIndex="23" GridPane.rowIndex="2" />
+      
+      
+                                    <Pane GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="10" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="11" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="12" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="13" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="14" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="15" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="16" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="17" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="18" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="19" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="20" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="21" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="22" GridPane.rowIndex="4" />
+                                    <Pane GridPane.columnIndex="23" GridPane.rowIndex="4" />
+      
+      
+                                    <Pane GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="7" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="8" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="10" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="11" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="12" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="13" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="14" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="15" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="16" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="17" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="18" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="19" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="20" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="21" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="22" GridPane.rowIndex="6" />
+                                    <Pane GridPane.columnIndex="23" GridPane.rowIndex="6" />
+      
+                                    <Pane GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="4" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="6" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="8" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="10" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="12" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="12" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="14" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="14" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="14" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="16" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="16" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="16" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="18" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="18" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="18" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="20" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="20" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="20" GridPane.rowIndex="5" />
+      
+                                    <Pane GridPane.columnIndex="22" GridPane.rowIndex="1" />
+                                    <Pane GridPane.columnIndex="22" GridPane.rowIndex="3" />
+                                    <Pane GridPane.columnIndex="22" GridPane.rowIndex="5" />
+      
+      
+                                    <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                                    <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="21.0" rotate="-90.0" text="3" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="89.0" prefWidth="47.0" styleClass="red" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="23.0" rotate="-90.0" text="2" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="22.0" rotate="-90.0" text="1" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="1" GridPane.columnSpan="8" GridPane.rowIndex="7">
+                                       <children>
+                                          <Label layoutX="53.0" layoutY="10.0" text="1-12" textFill="WHITE">
+                                             <font>
+                                                <Font size="37.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="8">
+                                       <children>
+                                          <Label layoutX="19.0" layoutY="17.0" text="1-18" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="22.0" rotate="-90.0" text="6" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="22.0" rotate="-90.0" text="5" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="22.0" rotate="-90.0" text="4" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="22.0" rotate="-90.0" text="9" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="22.0" rotate="-90.0" text="8" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="22.0" rotate="-90.0" text="7" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="5" GridPane.columnSpan="4" GridPane.rowIndex="8">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="17.0" text="EVEN" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="12" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="11" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="7" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="10" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="15" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="9" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="14" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="9" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="13" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="9" GridPane.columnSpan="8" GridPane.rowIndex="7">
+                                       <children>
+                                          <Label layoutX="42.0" layoutY="10.0" text="13-24" textFill="WHITE">
+                                             <font>
+                                                <Font size="37.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="9" GridPane.columnSpan="4" GridPane.rowIndex="8">
+                                       <children>
+                                          <Label layoutX="22.0" layoutY="17.0" text="RED" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="11" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="18" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="11" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="17" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="11" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="16" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="13" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="21" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="13" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="20" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="13" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="19" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="13" GridPane.columnSpan="4" GridPane.rowIndex="8">
+                                       <children>
+                                          <Label layoutX="7.0" layoutY="17.0" text="BLACK" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="15" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="24" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="15" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="23" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="15" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="22" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="17" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="27" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="17" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="26" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="17" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="25" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="17" GridPane.columnSpan="7" GridPane.rowIndex="7">
+                                       <children>
+                                          <Label layoutX="42.0" layoutY="10.0" text="25-36" textFill="WHITE">
+                                             <font>
+                                                <Font size="37.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="17" GridPane.columnSpan="4" GridPane.rowIndex="8">
+                                       <children>
+                                          <Label layoutX="19.0" layoutY="17.0" text="ODD" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="19" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="30" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="19" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="29" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="19" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="28" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="21" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="33" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="21" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="32" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="21" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="31" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="21" GridPane.columnSpan="3" GridPane.rowIndex="8">
+                                       <children>
+                                          <Label layoutX="12.0" layoutY="17.0" text="19-36" textFill="WHITE">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="23" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="36" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="red" GridPane.columnIndex="23" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="35" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="black" GridPane.columnIndex="23" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="4.0" layoutY="22.0" rotate="-90.0" text="34" textFill="WHITE">
+                                             <font>
+                                                <Font size="31.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="24" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label layoutY="24.0" rotate="-90.0" text="3rd" textFill="WHITE">
+                                             <font>
+                                                <Font size="28.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="24" GridPane.rowIndex="3">
+                                       <children>
+                                          <Label layoutX="-3.0" layoutY="24.0" rotate="-90.0" text="2nd" textFill="WHITE">
+                                             <font>
+                                                <Font size="28.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="green" GridPane.columnIndex="24" GridPane.rowIndex="5">
+                                       <children>
+                                          <Label layoutX="2.0" layoutY="24.0" rotate="-90.0" text="1st" textFill="WHITE">
+                                             <font>
+                                                <Font size="28.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="24" GridPane.rowIndex="7" />
+                                    <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="24" GridPane.rowIndex="8" />
+      
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="544.0" prefWidth="1022.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-border-color: white;">
+               <children>
+                  <HBox prefHeight="351.0" prefWidth="1022.0">
+                     <children>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="351.0" prefWidth="224.0" style="-fx-background-color: rgba(0, 0, 0, 0);">
+                           <children>
+                              <VBox layoutX="50.0" layoutY="51.0" prefHeight="301.0" prefWidth="224.0" style="-fx-border-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#spin" prefHeight="72.0" prefWidth="1239.0" text="Spin">
+                                       <font>
+                                          <Font size="32.0" />
+                                       </font>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#showAccountScene" prefHeight="71.0" prefWidth="1327.0" text="Account">
+                                       <font>
+                                          <Font size="32.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="351.0" prefWidth="797.0" style="-fx-background-color: rgba(0, 0, 0, 0);">
+                           <children>
+                              <HBox layoutX="476.0" layoutY="10.0" prefHeight="71.0" prefWidth="296.0">
+                                 <children>
+                                    <ImageView fx:id="whiteChip" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/white_chip.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="redChip" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/red_chip.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="blueChip" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/blue_chip.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="greenChip" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/green_chip.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="blackChip" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/black_chip.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="41.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Balance:" wrappingWidth="284.544921875">
+                                 <font>
+                                    <Font name="System Bold" size="37.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="balanceText" fill="WHITE" layoutX="11.0" layoutY="72.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="-0.0 BTC" wrappingWidth="284.544921875">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Text>
+                              <HBox layoutX="476.0" layoutY="78.0" prefHeight="30.0" prefWidth="296.0">
+                                 <children>
+                                    <TextField fx:id="whiteChipAmt" prefHeight="25.0" prefWidth="83.0" />
+                                    <TextField fx:id="redChipAmt" prefHeight="25.0" prefWidth="83.0" />
+                                    <TextField fx:id="blueChipAmt" prefHeight="25.0" prefWidth="83.0" />
+                                    <TextField fx:id="greenChipAmt" prefHeight="25.0" prefWidth="83.0" />
+                                    <TextField fx:id="blackChipAmt" prefHeight="25.0" prefWidth="83.0" />
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="betTable" layoutX="9.0" layoutY="82.0" prefHeight="194.0" prefWidth="409.0">
+                                <columns>
+                                  <TableColumn fx:id="amountColumn" prefWidth="100.0" text="Amount" />
+                                  <TableColumn fx:id="descriptionColumn" prefWidth="231.0" text="Bet" />
+                                    <TableColumn fx:id="deleteColumn" minWidth="0.0" prefWidth="77.0" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+  </items>
+</SplitPane>
