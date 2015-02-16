@@ -9,15 +9,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.derby.tools.sysinfo;
+import com.azazar.bitcoin.jsonrpcclient.BitcoinException;
+import com.azazar.bitcoin.jsonrpcclient.BitcoinJSONRPCClient;
 
 public class RouletteServerImpl implements RouletteServer{
 	
 	private Connection db;
+	private BitcoinJSONRPCClient bitcoin;
 
-	protected RouletteServerImpl(Connection db) throws RemoteException {
+	protected RouletteServerImpl(Connection db, BitcoinJSONRPCClient bitcoin) throws RemoteException {
 		super();
 		this.db = db;
+		this.bitcoin = bitcoin;
 	}
 
 	@Override
@@ -66,7 +69,7 @@ public class RouletteServerImpl implements RouletteServer{
 
 
 	@Override
-	public Lobby login(String username, String password) throws RemoteException {
+	public Object[] login(String username, String password) throws RemoteException {
 		
 		String sql = String.format("select password from players where username='%s'", username);
 		System.out.println(sql);
@@ -86,7 +89,35 @@ public class RouletteServerImpl implements RouletteServer{
 		}
 		
 		System.out.println(username + " logged in");
-		return new LobbyImpl();
+		return new Object[]{null, new LobbyImpl()};
 	}
 
+	@Override
+	public String withdraw(Player p, String address, double amount) throws RemoteException {
+		
+		try {
+			if (!bitcoin.validateAddress(address).isValid())
+				throw new BitcoinException();
+		} catch (BitcoinException e) {
+			e.printStackTrace();
+			//TODO
+			return "TODO";
+		}
+
+		/* Amount and address valid */
+		try {
+			double balance = p.getBalance();
+			if (amount > balance) {
+				//TODO
+				return "TODO";
+			}
+
+			String txHash = bitcoin.sendToAddress(address, amount);
+			return txHash;
+
+		} catch (BitcoinException e) {
+			e.printStackTrace();
+			return "TODO";//TODO
+		}
+	}
 }

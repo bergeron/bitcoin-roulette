@@ -1,6 +1,7 @@
 package pw.bitcoinroulette.gui.game.listeners;
 
 
+import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -74,11 +75,21 @@ public class SelectorClickListener implements EventHandler<MouseEvent>{
 			i.setEffect(new ColorAdjust());
 		}
 		
-		Bet b = addBet(coord);
+		Bet b = constructBet(coord);
+		gameCtrl.addBet(b);
 		gameCtrl.betToChip.put(b, chip);
+		
+		double newBalance;
+		try {
+			newBalance = gameCtrl.main.game.addBet(gameCtrl.main.player, b);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return;
+		}
+		gameCtrl.balanceText.setText(String.format("%.8f฿", newBalance));
 	}
 
-	private Bet addBet(Coord coord) {
+	private Bet constructBet(Coord coord) {
 		Coord[] selection = gameCtrl.coordToSelection.get(coord);
 		double betAmount = gameCtrl.chipAmounts[gameCtrl.currChip];
 		gameCtrl.currChip = -1;
@@ -87,14 +98,7 @@ public class SelectorClickListener implements EventHandler<MouseEvent>{
 		
 		HashSet<Integer> winningNumbers = new HashSet<Integer>();
 		Arrays.asList(selection).forEach(c -> winningNumbers.add(gameCtrl.coordToNumber.get(c)));
+		return new Bet(betAmount, payout, winningNumbers, gameCtrl.coordToDescription(coord));
 		
-		Player player = gameCtrl.main.core.player;
-		double newBalance = player.getBalance() - betAmount;
-		player.setBalance(newBalance);
-		gameCtrl.balanceText.setText(String.format("%.8f฿", newBalance));
-		
-		Bet b =new Bet(betAmount, payout, winningNumbers, gameCtrl.coordToDescription(coord));
-		gameCtrl.addBet(b);
-		return b;
 	}
 }

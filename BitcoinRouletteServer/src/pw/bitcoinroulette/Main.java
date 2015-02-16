@@ -1,6 +1,7 @@
 package pw.bitcoinroulette;
 
 
+import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -8,6 +9,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.azazar.bitcoin.jsonrpcclient.BitcoinJSONRPCClient;
 
 public class Main {
 
@@ -20,8 +23,24 @@ public class Main {
 	 * 
 	 */
 	public static void main(String[] args) {
+		
+		Auth.authenticate();
+
+		BitcoinJSONRPCClient bitcoin;
+		BitcoinListener bitcoinListener;
+		
+		try {
+			bitcoin = new BitcoinJSONRPCClient("http://localhost:"+ 8332);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		bitcoinListener = new BitcoinListener(bitcoin);
+		new Thread(bitcoinListener).start();
+		
 		Connection db = connectDB();
-		exportRMI(db);
+		exportRMI(db, bitcoin);
 	}
 
 	public static Connection connectDB() {
@@ -50,7 +69,7 @@ public class Main {
 		return conn;  
 	}
 
-	public static void exportRMI(Connection db) {
+	public static void exportRMI(Connection db, BitcoinJSONRPCClient bitcoin) {
 
 		// TODO !!!
 		// if (System.getSecurityManager() == null) {
@@ -66,7 +85,7 @@ public class Main {
 		}
 
 		try {
-			RouletteServer rouletteServer = new RouletteServerImpl(db);
+			RouletteServer rouletteServer = new RouletteServerImpl(db, bitcoin);
 			RouletteServer stub = (RouletteServer) UnicastRemoteObject.exportObject(rouletteServer, 0);
 			Registry registry = LocateRegistry.getRegistry();
 			registry.rebind("RouletteServer", stub);

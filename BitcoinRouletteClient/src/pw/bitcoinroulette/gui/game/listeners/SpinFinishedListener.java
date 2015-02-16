@@ -17,13 +17,7 @@ public class SpinFinishedListener implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		
-		for(Bet b: gameCtrl.bets){
-			System.out.println((b.cameTrue(result) ? "True: " : "False: ") + b.winning);
-			if(b.cameTrue(result)){
-				b.p.setBalance(b.account.getBalance() + (b.amount *b .payout));
-			}
-		}
+		//TODO;
 		
 	}
 

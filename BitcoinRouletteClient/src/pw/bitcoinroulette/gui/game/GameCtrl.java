@@ -39,7 +39,6 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import pw.bitcoinroulette.Bet;
-import pw.bitcoinroulette.core.Core;
 import pw.bitcoinroulette.gui.Main;
 import pw.bitcoinroulette.gui.game.listeners.ChipClickListener;
 import pw.bitcoinroulette.gui.game.listeners.SelectorClickListener;
@@ -328,7 +327,7 @@ public class GameCtrl {
 		blackChip.setOnMouseClicked(chipClick);
 		
 		try {
-			balanceText.setText(String.format("%.8f฿", main.core.player.getBalance()));
+			balanceText.setText(String.format("%.8f฿", main.player.getBalance()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

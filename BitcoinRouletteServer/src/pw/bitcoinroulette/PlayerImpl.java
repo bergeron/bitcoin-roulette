@@ -1,6 +1,7 @@
 package pw.bitcoinroulette;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.azazar.bitcoin.jsonrpcclient.Bitcoin.Transaction;
 import com.azazar.bitcoin.jsonrpcclient.BitcoinPaymentListener;
@@ -36,7 +37,7 @@ public class PlayerImpl implements BitcoinPaymentListener, Player{
 		return; 	/* Dont care about new blocks */
 	}
 	
-	public ArrayList<Transaction> getTransactions(){
+	public List<Transaction> getTransactions(){
 		return transactions;
 	}
 	

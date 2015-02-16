@@ -6,9 +6,8 @@ import java.rmi.RemoteException;
 
 public interface Game extends Remote {
 
-	public String addBet(Bet b) throws RemoteException;
+	public double addBet(Player p, Bet b) throws RemoteException;
 	
 	public String getName() throws RemoteException;
 	
 }
-

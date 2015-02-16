@@ -14,8 +14,8 @@ public class GameImpl extends UnicastRemoteObject implements Game {
 	}
 
 	@Override
-	public String addBet(Bet b) throws RemoteException {
-		return "bet added";
+	public double addBet(Player p, Bet b) throws RemoteException {
+		return -1;
 	}
 
 	@Override
