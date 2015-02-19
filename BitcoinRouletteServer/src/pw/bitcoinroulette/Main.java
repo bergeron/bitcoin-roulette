@@ -1,7 +1,10 @@
 package pw.bitcoinroulette;
 
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.Authenticator;
 import java.net.MalformedURLException;
+import java.net.PasswordAuthentication;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -9,42 +12,41 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Scanner;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 import com.azazar.bitcoin.jsonrpcclient.BitcoinJSONRPCClient;
 
 public class Main {
 
 	/**
-	 * First: start derby: sudo java -jar $DERBY_HOME/lib/derbyrun.jar server start
-	 * 
-	 * SCHEMA:
-	 * 		create table players(username varchar(255), password varchar(255));
-	 * 
-	 * 
+	 * Schema:
+	 * 		 create table players(id serial primary key, username varchar(255), bitcoinAddress varchar(255));
+
 	 */
 	public static void main(String[] args) {
-		
-		Auth.authenticate();
 
-		BitcoinJSONRPCClient bitcoin;
-		BitcoinListener bitcoinListener;
-		
+		Scanner cin;
 		try {
-			bitcoin = new BitcoinJSONRPCClient("http://localhost:"+ 8332);
-		} catch (MalformedURLException e) {
+			cin = new Scanner(new File("Auth.priv"));
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
 		}
-		
-		bitcoinListener = new BitcoinListener(bitcoin);
-		new Thread(bitcoinListener).start();
-		
-		Connection db = connectDB();
-		exportRMI(db, bitcoin);
-	}
 
-	public static Connection connectDB() {
-		String driver = "org.apache.derby.jdbc.ClientDriver";
+		final String dbPassword = cin.nextLine();
+		final String bitcoinRPCuser = cin.nextLine();
+		final String bitcoinRPCpassword = cin.nextLine();
+		cin.close();
+
+		/* Connect to database */
+		String driver = "org.postgresql.Driver";
+		String url = String.format("jdbc:postgresql://localhost:5432/BitcoinRoulette?user=postgres&password=%s",
+				dbPassword);
 
 		try {
 			Class.forName(driver);
@@ -52,24 +54,35 @@ public class Main {
 			e1.printStackTrace();
 		}
 
-		String dbName = "bitcoinRoulette";
-		String connectionURL = "jdbc:derby://localhost:1527/" + dbName + ";";
-
-		Connection conn = null;
-		
-		/* Connect to DB */
+		Connection db;
 		try {
-			conn = DriverManager.getConnection(connectionURL);
+			db = DriverManager.getConnection(url);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return;
 		}
 
-		System.out.println("Connected to database " + dbName);
-		
-		return conn;  
-	}
+		System.out.println("Connected to db");
 
-	public static void exportRMI(Connection db, BitcoinJSONRPCClient bitcoin) {
+		/* Connect to Bitcoin RPC */
+		Authenticator.setDefault(new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(bitcoinRPCuser, bitcoinRPCpassword.toCharArray());
+			}
+		});
+
+		BitcoinJSONRPCClient bitcoin;
+		try {
+			bitcoin = new BitcoinJSONRPCClient("http://localhost:" + 8332);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return;
+		}
+
+		System.out.println("Connected to Bitcoin client");
+		new Thread(new BitcoinListener(bitcoin)).start();
+
+		/* Export RMI */
 
 		// TODO !!!
 		// if (System.getSecurityManager() == null) {
@@ -94,5 +107,23 @@ public class Main {
 			System.err.println("Exception binding RouletteServer:");
 			e.printStackTrace();
 		}
+		
+		
+		
+		
+		//Test
+		
+         Configuration configuration = new Configuration();
+         configuration.configure("pw/bitcoinroulette/hibernate/hibernate.cfg.xml");
+         StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+         SessionFactory sessionFactory = configuration.buildSessionFactory(ssrb.build());
+         Session session = sessionFactory.openSession();
+         
+         Player p = new PlayerImpl("Sdaf", "2345");
+         
+         session.beginTransaction();
+         session.save(p);
+         session.getTransaction().commit();
+		
 	}
 }

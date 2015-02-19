@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="pw.bitcoinroulette.PlayerImpl" table="players" >
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="255" not-null="true" unique="true" />
+        </property>
+        <property name="bitcoinAddress" type="string">
+            <column name="bitcoinAddress" length="255" not-null="true" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>
