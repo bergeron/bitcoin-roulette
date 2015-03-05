@@ -11,8 +11,6 @@ local.properties
 .settings/
 .loadpath
 
-# Eclipse Core
-.project
 
 # External tool builders
 .externalToolBuilders/
@@ -23,8 +21,6 @@ local.properties
 # CDT-specific
 .cproject
 
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
 
 # PDT-specific
 .buildpath
