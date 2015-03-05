@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+	http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pw.bitcoinroulette</groupId>
+	<artifactId>bitcoinroulette</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<profiles>
+		<profile>
+			<id>server</id>
+			<modules>
+				<module>BitcoinRouletteLibrary</module>
+				<module>BitcoinRouletteServer</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>client</id>
+			<modules>
+				<module>BitcoinRouletteLibrary</module>
+				<module>BitcoinRouletteClient</module>
+			</modules>
+		</profile>
+	</profiles>
+	
+</project>

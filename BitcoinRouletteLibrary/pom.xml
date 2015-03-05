@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+	http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pw.bitcoinroulette</groupId>
+	<artifactId>bitcoinroulettelibrary</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+
+<!-- 	<dependencies>
+		<dependency>
+			<groupId>com.37coins</groupId>
+			<artifactId>BitcoindClient4J</artifactId>
+			<version>0.2.2</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>BitcoindClient4j</id>
+			<name>GitHub BitcoindClient4j Repository</name>
+			<url>https://s3.amazonaws.com/37mvnrepo/release</url>
+		</repository>
+	</repositories> -->
+
+</project>

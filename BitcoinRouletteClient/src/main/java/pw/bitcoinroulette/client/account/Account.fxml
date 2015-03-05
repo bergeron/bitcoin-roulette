@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-image: url('pw/bitcoinroulette/gui/images/felt.jpg'); -fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="WHITE" layoutX="141.0" layoutY="220.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Bitcoin Roulette Account" AnchorPane.bottomAnchor="467.50048828125" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="141.724609375" AnchorPane.topAnchor="170.80419921875">
+         <font>
+            <Font name="System Bold" size="53.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="372.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance: ">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tableView" layoutX="256.0" layoutY="291.0" prefHeight="359.0" prefWidth="750.0">
+        <columns>
+            <TableColumn fx:id="fromAddressCol" prefWidth="443.0" text="From Address" />
+          <TableColumn fx:id="amountCol" minWidth="0.0" prefWidth="149.0" text="Amount" />
+          <TableColumn fx:id="statusCol" prefWidth="156.0" text="Status" />
+        </columns>
+      </TableView>
+      <VBox layoutX="26.0" layoutY="292.0" prefHeight="359.0" prefWidth="207.0" style="-fx-background-color: grey;">
+         <children>
+            <Button mnemonicParsing="false" onAction="#showGameScene" prefHeight="108.0" prefWidth="207.0" text="Back to Game">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#refresh" prefHeight="107.0" prefWidth="207.0" text="Refresh">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#fundAccount" prefHeight="117.0" prefWidth="207.0" text="Fund Account">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#withdraw" prefHeight="104.0" prefWidth="207.0" text="Withdraw">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+         </children>
+      </VBox>
+      <Label fx:id="balanceLabel" layoutX="567.0" layoutY="232.0" text="1.337 BTC" textFill="WHITE">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="900.0" layoutX="237.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/chips.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
