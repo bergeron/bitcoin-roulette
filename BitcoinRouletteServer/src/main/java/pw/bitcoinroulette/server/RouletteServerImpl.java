@@ -6,6 +6,7 @@ import java.security.spec.InvalidKeySpecException;
 
 import main.java.pw.bitcoinroulette.library.Lobby;
 import main.java.pw.bitcoinroulette.library.RouletteServer;
+import main.java.pw.bitcoinroulette.server.models.AuthPlayerImpl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,12 +33,9 @@ public class RouletteServerImpl implements RouletteServer {
 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-			
-		boolean available = ((Long) session
-				.createCriteria(AuthPlayerImpl.class)
-				.add(Restrictions.eq("username", username))
-				.setProjection(Projections.rowCount())
-				.uniqueResult()) == 0;
+
+		boolean available = ((Long) session.createCriteria(AuthPlayerImpl.class).add(Restrictions.eq("username", username))
+				.setProjection(Projections.rowCount()).uniqueResult()) == 0;
 
 		session.getTransaction().commit();
 
@@ -72,10 +70,8 @@ public class RouletteServerImpl implements RouletteServer {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		AuthPlayerImpl p = (AuthPlayerImpl) session
-				.createCriteria(AuthPlayerImpl.class)
-				.add(Restrictions.eq("username", username))
-				.uniqueResult();
+		AuthPlayerImpl p = (AuthPlayerImpl) session.createCriteria(AuthPlayerImpl.class)
+				.add(Restrictions.eq("username", username)).uniqueResult();
 
 		session.getTransaction().commit();
 		session.close();

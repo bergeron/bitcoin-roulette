@@ -14,6 +14,8 @@ import java.util.Scanner;
 import main.java.pw.bitcoinroulette.library.RouletteServer;
 import main.java.pw.bitcoinroulette.server.bitcoin.NewBlockListener;
 import main.java.pw.bitcoinroulette.server.bitcoin.NewTransactionListener;
+import main.java.pw.bitcoinroulette.server.models.AuthPlayerImpl;
+import main.java.pw.bitcoinroulette.server.models.TransactionImpl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -95,10 +97,10 @@ public class Main {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		AuthPlayerImpl p = new AuthPlayerImpl(bitcoin, "username3", "pass3");
+		AuthPlayerImpl p = new AuthPlayerImpl(bitcoin, "bbergero", "password");
 		session.save(p);
-		TransactionImpl t = new TransactionImpl("hash3", new BigDecimal(.1), 0l, 2341234, p);
-		session.save(t);
+//		TransactionImpl t = new TransactionImpl("hash33", new BigDecimal(.1), 0l, 2341234, p);
+//		session.save(t);
 		session.getTransaction().commit();
 		session.close();
 	}

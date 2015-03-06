@@ -1,4 +1,4 @@
-package main.java.pw.bitcoinroulette.server;
+package main.java.pw.bitcoinroulette.server.models;
 
 import java.math.BigDecimal;
 
@@ -15,18 +15,32 @@ import main.java.pw.bitcoinroulette.library.Transaction;
 @Entity
 @Table(name = "transactions")
 public class TransactionImpl implements Transaction {
-	
+
+	@Id
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+	@Column(name = "transactionId", unique = true, nullable = false)
 	private long transactionId;
-	private String hash;
-	private BigDecimal amount;
-	private long confirmations;
-	private long dateEpoch;
+
+	@ManyToOne()
+	@JoinColumn(nullable = false)
 	private AuthPlayerImpl player;
-	
-	public TransactionImpl(){
+
+	@Column(name = "hash", unique = true, nullable = false, length = 255)
+	private String hash;
+
+	@Column(name = "amount", precision=16, scale=8, nullable = false)
+	private BigDecimal amount;
+
+	@Column(name = "confirmations")
+	private long confirmations;
+
+	@Column(name = "dateEpoch", nullable = false)
+	private long dateEpoch;
+
+	public TransactionImpl() {
 		super();
 	}
-	
+
 	public TransactionImpl(String hash, BigDecimal amount, long confirmations, long dateEpoch, AuthPlayerImpl player) {
 		this.hash = hash;
 		this.amount = amount;
@@ -34,62 +48,25 @@ public class TransactionImpl implements Transaction {
 		this.dateEpoch = dateEpoch;
 		this.player = player;
 	}
-	
 
-	@Id
-	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-	@Column(name = "transactionId", unique = true, nullable = false)
 	public long getTransactionId() {
 		return transactionId;
 	}
 
-	public void setTransactionId(long transactionId) {
-		this.transactionId = transactionId;
-	}
-
-	@Column(name = "hash", unique = true, nullable = false, length = 255)
 	public String getTxHash() {
 		return hash;
 	}
 
-	public void setTxHash(String txHash) {
-		this.hash = txHash;
-	}
-
-	@Column(name = "amount", nullable = false)
 	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
-	}
-
-	@Column(name = "dateEpoch")
 	public long getDateEpoch() {
 		return dateEpoch;
 	}
 
-	public void setDateEpoch(long dateEpoch) {
-		this.dateEpoch = dateEpoch;
-	}
-
-	@ManyToOne()
-	@JoinColumn(nullable = false)
-	public AuthPlayerImpl getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(AuthPlayerImpl player) {
-		this.player = player;
-	}
-
-	@Column(name = "confirmations")
 	public long getConfirmations() {
 		return confirmations;
 	}
 
-	public void setConfirmations(long confirmations) {
-		this.confirmations = confirmations;
-	}
 }

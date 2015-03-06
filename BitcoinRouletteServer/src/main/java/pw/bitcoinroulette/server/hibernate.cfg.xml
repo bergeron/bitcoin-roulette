@@ -13,7 +13,7 @@
 		<property name="show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property> <!-- When @annotations change schema, drop/recreate db -->
 		
-		<mapping class="main.java.pw.bitcoinroulette.server.AuthPlayerImpl" />
-		<mapping class="main.java.pw.bitcoinroulette.server.TransactionImpl" />
+		<mapping class="main.java.pw.bitcoinroulette.server.models.AuthPlayerImpl" />
+		<mapping class="main.java.pw.bitcoinroulette.server.models.TransactionImpl" />
 	</session-factory>
 </hibernate-configuration>

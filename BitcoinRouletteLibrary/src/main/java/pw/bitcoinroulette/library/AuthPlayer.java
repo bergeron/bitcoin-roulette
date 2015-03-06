@@ -11,7 +11,7 @@ public interface AuthPlayer extends Remote, OtherPlayer{
 	
 	public String getBitcoinAddress() throws RemoteException;
 	
-	public List<Transaction> getTransactionsInterface() throws RemoteException;
+	public List<Transaction> getTransactions() throws RemoteException;
 
 	public Bet makeBet(ServerGame g, double amount, int payout, HashSet<Integer> winning, String description) throws RemoteException;
 

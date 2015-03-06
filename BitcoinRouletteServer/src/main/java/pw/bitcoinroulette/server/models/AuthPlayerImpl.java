@@ -1,4 +1,4 @@
-package main.java.pw.bitcoinroulette.server;
+package main.java.pw.bitcoinroulette.server.models;
 
 import java.math.BigDecimal;
 import java.rmi.RemoteException;
@@ -16,6 +16,7 @@ import main.java.pw.bitcoinroulette.library.AuthPlayer;
 import main.java.pw.bitcoinroulette.library.Bet;
 import main.java.pw.bitcoinroulette.library.ServerGame;
 import main.java.pw.bitcoinroulette.library.Transaction;
+import main.java.pw.bitcoinroulette.server.BetImpl;
 
 import com._37coins.bcJsonRpc.BitcoindInterface;
 
@@ -23,72 +24,48 @@ import com._37coins.bcJsonRpc.BitcoindInterface;
 @Table(name = "players")
 public class AuthPlayerImpl extends OtherPlayerImpl implements AuthPlayer {
 
+	@Transient
 	private BitcoindInterface bitcoin;
-	private String password;
-	private double balance;
+
+	@Column(name = "bitcoinaddress", unique = true, nullable = false)
 	private String bitcoinAddress;
+
+	@Column(name = "balance", precision=16, scale=8, nullable = false)
+	private double balance;
+
+	@Column(name = "password", nullable = false)
+	private String password;
+
+	@OneToMany(mappedBy = "player")
 	private List<TransactionImpl> transactions = new ArrayList<TransactionImpl>();
-	
-	public AuthPlayerImpl(){
+
+	public AuthPlayerImpl() {
 		super();
 	}
 
 	public AuthPlayerImpl(BitcoindInterface bitcoin, String username, String password) {
 		super(username);
+		this.bitcoinAddress = bitcoin.getnewaddress("roulette");
+		this.balance = 0;
 		this.password = password;
-		this.balance = -1;
-
-		String bitcoinAddress = bitcoin.getnewaddress("roulette");
-		this.setBitcoinAddress(bitcoinAddress);
 	}
 
-	
-	@Column(name="balance")
 	public double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-	
-	@OneToMany(mappedBy = "player")
-	public List<TransactionImpl> getTransactions() {
-		return transactions;
-	}
-	
-	public void setTransactions(List<TransactionImpl> transactions) {
-		this.transactions = transactions;
-	}
-
-	@Transient
-	@Override
-	public List<Transaction> getTransactionsInterface() {
+	public List<Transaction> getTransactions() {
 		List<Transaction> l = new ArrayList<Transaction>();
-		for(Transaction t: transactions){
-			l.add((Transaction)t);
+		for (Transaction t : transactions) {
+			l.add((Transaction) t);
 		}
 		return l;
 	}
-	
-	@Column(name="bitcoinaddress")
+
 	public String getBitcoinAddress() {
 		return bitcoinAddress;
 	}
 
-	private void setBitcoinAddress(String bitcoinAddress) {
-		this.bitcoinAddress = bitcoinAddress;
-	}
-
-	@Column(name="password")
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 	public String withdraw(String address, double amount) {
 
 		if (!bitcoin.validateaddress(address).isIsvalid()) {
@@ -98,7 +75,7 @@ public class AuthPlayerImpl extends OtherPlayerImpl implements AuthPlayer {
 		if (amount > balance) {
 			return "Insufficient funds";
 		}
-		
+
 		return bitcoin.sendtoaddress(address, new BigDecimal(amount));
 
 	}
@@ -106,6 +83,10 @@ public class AuthPlayerImpl extends OtherPlayerImpl implements AuthPlayer {
 	public Bet makeBet(ServerGame g, double amount, int payout, HashSet<Integer> winning, String description)
 			throws RemoteException {
 		return new BetImpl(amount, payout, winning, description);
+	}
+	
+	public String getPassword(){
+		return this.password;
 	}
 
 }
