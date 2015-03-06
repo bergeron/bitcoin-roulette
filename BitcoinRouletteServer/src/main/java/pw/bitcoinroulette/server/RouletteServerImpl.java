@@ -27,9 +27,8 @@ public class RouletteServerImpl implements RouletteServer {
 		this.sessionFactory = sessionFactory;
 	}
 
-	// TODO mutex lock to avoid double register
 	@Override
-	public boolean register(String username, String password) throws RemoteException {
+	public synchronized boolean register(String username, String password) throws RemoteException {
 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
