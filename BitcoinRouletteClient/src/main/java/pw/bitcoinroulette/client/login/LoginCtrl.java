@@ -94,14 +94,18 @@ public class LoginCtrl {
 				
 				try {
 					Object[] login = main.rouletteServer.login(username.getText(), password.getText());
+					
+					if(login == null){
+						throw new RemoteException("Invalid username or password");
+					}
+					
 					main.authPlayer = (AuthPlayer)login[0];
 					Lobby lobby = (Lobby)login[1];
 					
-					try {
-						main.loadLobby(lobby);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					System.out.println(main.authPlayer.getUsername());
+					
+					main.loadLobby(lobby);
+					
 					
 				} catch (RemoteException e) {
 					

@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import main.java.pw.bitcoinroulette.library.AuthPlayer;
 import main.java.pw.bitcoinroulette.library.Lobby;
 import main.java.pw.bitcoinroulette.library.RouletteServer;
 import main.java.pw.bitcoinroulette.server.models.AuthPlayerImpl;
@@ -82,6 +83,7 @@ public class RouletteServerImpl implements RouletteServer {
 
 		try {
 			if (PasswordHash.validatePassword(password, p.getPassword())) {
+				System.out.println("valid login");
 				return new Object[] { p, lobby };
 			}
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {

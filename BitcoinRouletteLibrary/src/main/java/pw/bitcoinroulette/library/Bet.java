@@ -1,11 +1,14 @@
 package main.java.pw.bitcoinroulette.library;
 
+import java.math.BigDecimal;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface Bet extends Remote {
 	
-	public double getAmount() throws RemoteException;
+	public int getPayout() throws RemoteException;
+	
+	public BigDecimal getAmount() throws RemoteException;
 	
 	public boolean cameTrue(int resultOfSpin) throws RemoteException;
 	

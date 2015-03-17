@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-image: url('pw/bitcoinroulette/gui/images/felt.jpg'); -fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-image: url('main/java/pw/bitcoinroulette/client/images/felt.jpg'); -fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fill="WHITE" layoutX="141.0" layoutY="220.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Bitcoin Roulette Account" AnchorPane.bottomAnchor="467.50048828125" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="141.724609375" AnchorPane.topAnchor="170.80419921875">
          <font>

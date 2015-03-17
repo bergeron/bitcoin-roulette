@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 import main.java.pw.bitcoinroulette.library.Lobby;
 import main.java.pw.bitcoinroulette.library.ServerGame;
+import main.java.pw.bitcoinroulette.server.models.ServerGameImpl;
 
 public class LobbyImpl extends UnicastRemoteObject implements Lobby {
 

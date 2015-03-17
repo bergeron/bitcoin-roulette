@@ -93,15 +93,15 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		AuthPlayerImpl p = new AuthPlayerImpl(bitcoin, "bbergero", "password");
-		session.save(p);
+//		
+//		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+//		
+//		AuthPlayerImpl p = new AuthPlayerImpl(bitcoin, "bbergero", "password");
+//		session.save(p);
 //		TransactionImpl t = new TransactionImpl("hash33", new BigDecimal(.1), 0l, 2341234, p);
 //		session.save(t);
-		session.getTransaction().commit();
-		session.close();
+//		session.getTransaction().commit();
+//		session.close();
 	}
 }

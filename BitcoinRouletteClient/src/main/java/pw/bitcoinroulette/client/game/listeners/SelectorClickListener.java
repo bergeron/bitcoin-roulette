@@ -1,5 +1,6 @@
 package main.java.pw.bitcoinroulette.client.game.listeners;
 
+import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -69,7 +70,7 @@ public class SelectorClickListener implements EventHandler<MouseEvent> {
 
 		/* Add bet to server */
 		Coord[] selection = gameCtrl.coordToSelection.get(coord);
-		double betAmount = gameCtrl.chipAmounts[gameCtrl.currChip];
+		BigDecimal betAmount = gameCtrl.chipAmounts[gameCtrl.currChip];
 		gameCtrl.currChip = -1;
 		int payout = (36 / selection.length) - 1;
 		System.out.printf("Bet: %f Payout: %d to 1\n", betAmount, payout);

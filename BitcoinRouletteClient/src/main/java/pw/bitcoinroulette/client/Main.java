@@ -67,10 +67,14 @@ public class Main extends Application {
 	    stage.show();
 	}
 	
-	public void loadLobby(Lobby lobby) throws IOException{
+	public void loadLobby(Lobby lobby) {
 		FXMLLoader lobbyFxml = new FXMLLoader(getClass().getResource("lobby/Lobby.fxml"));
 		lobbyFxml.setController(new LobbyCtrl(this, lobby));
-		lobbyScene = new Scene(lobbyFxml.load());
+		try {
+			lobbyScene = new Scene(lobbyFxml.load());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		stage.setScene(lobbyScene);
 	}
 	

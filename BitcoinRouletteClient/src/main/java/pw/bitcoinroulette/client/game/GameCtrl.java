@@ -1,6 +1,7 @@
 package main.java.pw.bitcoinroulette.client.game;
 
 
+import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -75,7 +76,7 @@ public class GameCtrl implements ClientGame {
 	public HashMap<Coord, Coord[]> coordToSelection = new HashMap<Coord, Coord[]>();
 	public HashMap<Coord, String> specialDescriptions  = new HashMap<Coord, String>();
 	public ObservableList<Bet> bets = FXCollections.observableArrayList();
-	public double[] chipAmounts = new double[]{.05, .1, .2, .3, 4};
+	public BigDecimal[] chipAmounts = new BigDecimal[]{new BigDecimal(.05), new BigDecimal(.1), new BigDecimal(.2), new BigDecimal(.3), new BigDecimal(4)};
 	public int currChip = -1;
 	public ImageView[] chips;
 	public ImageView floatingChip = new ImageView();

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('pw/bitcoinroulette/gui/images/felt.jpg'); -fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1024.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('main/java/pw/bitcoinroulette/client/images/felt.jpg'); -fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       
       <ImageView fitHeight="206.0" fitWidth="522.0" layoutX="247.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
@@ -15,11 +15,11 @@
                                     <Image url="@../images/title_trans.png" />
                                  </image>
                               </ImageView>
-      <TableView layoutX="459.0" layoutY="341.0" prefHeight="329.0" prefWidth="532.0">
+      <TableView fx:id="tableView" layoutX="459.0" layoutY="341.0" prefHeight="329.0" prefWidth="532.0">
         <columns>
-          <TableColumn prefWidth="161.0" text="Name" />
-          <TableColumn prefWidth="245.0" text="Players" />
-            <TableColumn prefWidth="122.0" text="Join" />
+          <TableColumn fx:id="nameCol" prefWidth="161.0" text="Name" />
+          <TableColumn fx:id="playersCol" prefWidth="245.0" text="Players" />
+          <TableColumn fx:id="joinCol" prefWidth="122.0" text="Join" />
         </columns>
       </TableView>
       <VBox layoutX="91.0" layoutY="432.0" prefHeight="139.0" prefWidth="248.0">
@@ -31,8 +31,8 @@
             </Text>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="136.0" />
-                  <Button mnemonicParsing="false" text="Search">
+                  <TextField fx:id="searchText" prefHeight="25.0" prefWidth="136.0" />
+                  <Button fx:id="searchBtn" mnemonicParsing="false" text="Search">
                      <HBox.margin>
                         <Insets left="7.0" />
                      </HBox.margin>
@@ -49,8 +49,8 @@
             </Text>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="137.0" />
-                  <Button mnemonicParsing="false" text="Create">
+                  <TextField fx:id="createText" prefHeight="25.0" prefWidth="137.0" />
+                  <Button fx:id="createBtn" mnemonicParsing="false" text="Create">
                      <HBox.margin>
                         <Insets left="7.0" />
                      </HBox.margin>

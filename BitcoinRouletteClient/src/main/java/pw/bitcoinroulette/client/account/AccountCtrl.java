@@ -21,6 +21,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import main.java.pw.bitcoinroulette.client.Main;
+import main.java.pw.bitcoinroulette.library.Transaction;
 
 import org.controlsfx.control.ButtonBar;
 import org.controlsfx.control.ButtonBar.ButtonType;
@@ -28,9 +30,6 @@ import org.controlsfx.control.action.AbstractAction;
 import org.controlsfx.control.action.Action;
 import org.controlsfx.dialog.Dialog;
 
-import main.java.pw.bitcoinroulette.client.Main;
-
-import com._37coins.bcJsonRpc.pojo.Transaction;
 
 
 public class AccountCtrl {
@@ -66,11 +65,17 @@ public class AccountCtrl {
 		}
 
 		for (Transaction t : txs) {
-			rows.add(new TransactionRow(t.getAddress(), t.getAmount(), t.getConfirmations() >= 6 ? "Confirmed" : t
-					.getConfirmations() + " confirmations"));
+			TransactionRow tr;
+			try {
+				tr = new TransactionRow(/* t.getAddress() */"addr", t.getAmount(), t.getConfirmations() >= 6 ? "Confirmed"
+						: t.getConfirmations() + " confirmations");
+				rows.add(tr);
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
 		}
 
-		double balance;
+		BigDecimal balance;
 		try {
 			balance = main.authPlayer.getBalance();
 		} catch (RemoteException e1) {
@@ -90,7 +95,7 @@ public class AccountCtrl {
 
 		String address;
 		try {
-			address = main.authPlayer.getAddress();
+			address = main.authPlayer.getBitcoinAddress();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return;
@@ -151,12 +156,9 @@ public class AccountCtrl {
 				String address = addressField.getText();
 				error.setVisible(false);
 
-				double amount;
-				try {
-					amount = Double.parseDouble(amountField.getText());
-					if (amount <= 0)
-						throw new NumberFormatException();
-				} catch (NumberFormatException e) {
+				BigDecimal amount;
+				amount = new BigDecimal(amountField.getText());
+				if (amount.compareTo(BigDecimal.ZERO) < 0) {
 					error.setText("Invalid Amount");
 					error.setVisible(true);
 					return;

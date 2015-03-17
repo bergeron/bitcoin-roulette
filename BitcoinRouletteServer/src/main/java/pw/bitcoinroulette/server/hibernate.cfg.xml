@@ -11,9 +11,12 @@
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="show_sql">true</property>
-		<property name="hibernate.hbm2ddl.auto">update</property> <!-- When @annotations change schema, drop/recreate db -->
+		<property name="hibernate.hbm2ddl.auto">update</property> <!-- When schemas change, drop/recreate tables -->
 		
 		<mapping class="main.java.pw.bitcoinroulette.server.models.AuthPlayerImpl" />
 		<mapping class="main.java.pw.bitcoinroulette.server.models.TransactionImpl" />
+		<mapping class="main.java.pw.bitcoinroulette.server.models.ServerGameImpl" />
+		<mapping class="main.java.pw.bitcoinroulette.server.models.BetImpl" />
+		
 	</session-factory>
 </hibernate-configuration>
