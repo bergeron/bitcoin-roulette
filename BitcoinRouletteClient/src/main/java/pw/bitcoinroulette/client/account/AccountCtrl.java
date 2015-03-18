@@ -39,12 +39,15 @@ public class AccountCtrl {
 	@FXML public TableColumn<TransactionRow, String> fromAddressCol;
 	@FXML public TableColumn<TransactionRow, BigDecimal> amountCol;
 	@FXML public TableColumn<TransactionRow, String> statusCol;
+	@FXML Button gameBtn;
 
 	public AccountCtrl(Main main) {
 		this.main = main;
 	}
 
 	public void initialize() {
+		gameBtn.setOnMouseClicked((e) -> main.setGameScene(main.serverGame));
+		
 		fromAddressCol.setCellValueFactory(new PropertyValueFactory<TransactionRow, String>("address"));
 		amountCol.setCellValueFactory(new PropertyValueFactory<TransactionRow, BigDecimal>("amount"));
 		statusCol.setCellValueFactory(new PropertyValueFactory<TransactionRow, String>("status"));
@@ -157,19 +160,26 @@ public class AccountCtrl {
 				error.setVisible(false);
 
 				BigDecimal amount;
-				amount = new BigDecimal(amountField.getText());
-				if (amount.compareTo(BigDecimal.ZERO) < 0) {
+				try{
+					amount = new BigDecimal(amountField.getText());
+					if (amount.compareTo(BigDecimal.ZERO) < 0) {
+						throw new NumberFormatException("Withdraw amount must be positive");
+					}
+				} catch (NumberFormatException e){
 					error.setText("Invalid Amount");
 					error.setVisible(true);
 					return;
 				}
-
+				
 				String txHash = "";
 				try {
 					txHash = main.authPlayer.withdraw(address, amount);
 				} catch (RemoteException e) {
-					e.printStackTrace();
-					//TODO
+					
+					System.out.println(e.getCause().getMessage());
+					error.setText(e.getCause().getMessage());
+					error.setVisible(true);
+					return;
 				}
 				
 				System.out.println(txHash);
@@ -181,9 +191,5 @@ public class AccountCtrl {
 		dlg.getActions().add(submitAction);
 		dlg.setContent(gridPane);
 		dlg.show();
-	}
-
-	public void showGameScene() {
-		main.stage.setScene(main.gameScene);
 	}
 }

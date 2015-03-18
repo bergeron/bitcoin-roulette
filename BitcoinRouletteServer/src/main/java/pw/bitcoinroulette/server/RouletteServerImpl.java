@@ -19,13 +19,14 @@ import com._37coins.bcJsonRpc.BitcoindInterface;
 public class RouletteServerImpl implements RouletteServer {
 
 	private SessionFactory sessionFactory;
-	private Lobby lobby = new LobbyImpl();
+	private Lobby lobby;
 	private BitcoindInterface bitcoin;
 
 	protected RouletteServerImpl(BitcoindInterface bitcoin, SessionFactory sessionFactory) throws RemoteException {
 		super();
 		this.bitcoin = bitcoin;
 		this.sessionFactory = sessionFactory;
+		this.lobby = new LobbyImpl(sessionFactory);
 	}
 
 	@Override
@@ -34,8 +35,10 @@ public class RouletteServerImpl implements RouletteServer {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		boolean available = ((Long) session.createCriteria(AuthPlayerImpl.class).add(Restrictions.eq("username", username))
-				.setProjection(Projections.rowCount()).uniqueResult()) == 0;
+		boolean available = ((Long) session.createCriteria(AuthPlayerImpl.class)
+				.add(Restrictions.eq("username", username))
+				.setProjection(Projections.rowCount())
+				.uniqueResult()) == 0;
 
 		session.getTransaction().commit();
 
@@ -53,7 +56,7 @@ public class RouletteServerImpl implements RouletteServer {
 				return false;
 			}
 
-			AuthPlayerImpl p = new AuthPlayerImpl(bitcoin, username, hashedPassword);
+			AuthPlayerImpl p = new AuthPlayerImpl(username, hashedPassword);
 
 			session.beginTransaction();
 			session.save(p);
@@ -70,8 +73,10 @@ public class RouletteServerImpl implements RouletteServer {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		AuthPlayerImpl p = (AuthPlayerImpl) session.createCriteria(AuthPlayerImpl.class)
-				.add(Restrictions.eq("username", username)).uniqueResult();
+		AuthPlayerImpl p = (AuthPlayerImpl) session
+				.createCriteria(AuthPlayerImpl.class)
+				.add(Restrictions.eq("username", username))
+				.uniqueResult();
 
 		session.getTransaction().commit();
 		session.close();

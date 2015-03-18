@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,13 +25,10 @@ import com._37coins.bcJsonRpc.BitcoindInterface;
 @Table(name = "players")
 public class AuthPlayerImpl extends OtherPlayerImpl implements AuthPlayer {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2772558738676419928L;
 
 	@Transient
-	private BitcoindInterface bitcoin;
+	public static BitcoindInterface bitcoin;
 
 	@Column(name = "bitcoinaddress", unique = true, nullable = false)
 	private String bitcoinAddress;
@@ -41,7 +39,7 @@ public class AuthPlayerImpl extends OtherPlayerImpl implements AuthPlayer {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@OneToMany(mappedBy = "player")
+	@OneToMany(mappedBy = "player", fetch=FetchType.EAGER)
 	private List<TransactionImpl> transactions = new ArrayList<TransactionImpl>();
 	
 	@OneToMany(mappedBy = "player")
@@ -54,7 +52,7 @@ public class AuthPlayerImpl extends OtherPlayerImpl implements AuthPlayer {
 		super();
 	}
 
-	public AuthPlayerImpl(BitcoindInterface bitcoin, String username, String password) throws RemoteException {
+	public AuthPlayerImpl(String username, String password) throws RemoteException {
 		super(username);
 		this.bitcoinAddress = bitcoin.getnewaddress("roulette");
 		this.balance = BigDecimal.ZERO;
@@ -77,18 +75,18 @@ public class AuthPlayerImpl extends OtherPlayerImpl implements AuthPlayer {
 		return bitcoinAddress;
 	}
 
-	public String withdraw(String address, BigDecimal amount) {
-
-		if (!bitcoin.validateaddress(address).isIsvalid()) {
-			return "Invalid address";
-		}
+	public String withdraw(String address, BigDecimal amount) throws RemoteException {
 		
-		if(amount.compareTo(balance) > 0){
-			return "Insufficient funds";
+		if (!bitcoin.validateaddress(address).isIsvalid()) {
+			throw new RemoteException("Invalid address");
+		} else if(balance.compareTo(amount) < 0){
+			throw new RemoteException("Insufficient funds");
 		}
 
-		return bitcoin.sendtoaddress(address, amount);
-
+		String hash = bitcoin.sendtoaddress(address, amount);
+		System.out.println(hash);
+		
+		return "hash";
 	}
 
 	public Bet makeBet(ServerGame g, BigDecimal amount, int payout, HashSet<Integer> winning, String description)

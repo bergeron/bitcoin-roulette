@@ -3,8 +3,8 @@ package main.java.pw.bitcoinroulette.server;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -12,10 +12,11 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 import main.java.pw.bitcoinroulette.library.RouletteServer;
+import main.java.pw.bitcoinroulette.library.ServerGame;
 import main.java.pw.bitcoinroulette.server.bitcoin.NewBlockListener;
 import main.java.pw.bitcoinroulette.server.bitcoin.NewTransactionListener;
 import main.java.pw.bitcoinroulette.server.models.AuthPlayerImpl;
-import main.java.pw.bitcoinroulette.server.models.TransactionImpl;
+import main.java.pw.bitcoinroulette.server.models.ServerGameImpl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -65,15 +66,10 @@ public class Main {
 			return;
 		}
 		
+		AuthPlayerImpl.bitcoin = bitcoin;
 		System.out.println("Connected to bitcoin");
 
 		/* Export RMI */
-
-		// TODO !!!
-		// if (System.getSecurityManager() == null) {
-		// System.setSecurityManager(new SecurityManager());
-		// }
-
 		try {
 			LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
 			System.out.printf("RMI registry running on port %d\n", Registry.REGISTRY_PORT);
@@ -93,14 +89,18 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-//		
 //		Session session = sessionFactory.openSession();
 //		session.beginTransaction();
 //		
-//		AuthPlayerImpl p = new AuthPlayerImpl(bitcoin, "bbergero", "password");
-//		session.save(p);
-//		TransactionImpl t = new TransactionImpl("hash33", new BigDecimal(.1), 0l, 2341234, p);
-//		session.save(t);
+//		ServerGame sg;
+//		try {
+//			sg = new ServerGameImpl("sg3");
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			return;
+//		}
+//		
+//		session.save(sg);
 //		session.getTransaction().commit();
 //		session.close();
 	}

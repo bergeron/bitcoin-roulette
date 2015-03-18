@@ -27,7 +27,7 @@
       </TableView>
       <VBox layoutX="26.0" layoutY="292.0" prefHeight="359.0" prefWidth="207.0" style="-fx-background-color: grey;">
          <children>
-            <Button mnemonicParsing="false" onAction="#showGameScene" prefHeight="108.0" prefWidth="207.0" text="Back to Game">
+            <Button fx:id="gameBtn" mnemonicParsing="false" prefHeight="108.0" prefWidth="207.0" text="Back to Game">
                <font>
                   <Font size="20.0" />
                </font></Button>

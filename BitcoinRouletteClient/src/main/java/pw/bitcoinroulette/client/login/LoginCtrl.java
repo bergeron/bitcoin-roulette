@@ -88,7 +88,7 @@ public class LoginCtrl {
 		final Label validationError = new Label("Wrong username/password.");
 		
 		final Action action = new AbstractAction("Login") {
-			/* This method is called when the login button is clicked */
+			
 			public void handle(ActionEvent ae) {
 				Dialog d = (Dialog) ae.getSource();
 				
@@ -101,11 +101,7 @@ public class LoginCtrl {
 					
 					main.authPlayer = (AuthPlayer)login[0];
 					Lobby lobby = (Lobby)login[1];
-					
-					System.out.println(main.authPlayer.getUsername());
-					
-					main.loadLobby(lobby);
-					
+					main.setLobbyScene(lobby);
 					
 				} catch (RemoteException e) {
 					
@@ -120,7 +116,6 @@ public class LoginCtrl {
 		
 		dialog("Login", "Login to Bitcoin Roulette", action, username, password, validationError);
 
-		
 	}
 
 	public void register() {

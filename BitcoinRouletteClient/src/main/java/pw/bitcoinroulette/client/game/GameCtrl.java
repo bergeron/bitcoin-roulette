@@ -47,6 +47,7 @@ import main.java.pw.bitcoinroulette.client.game.listeners.SelectorExitListener;
 import main.java.pw.bitcoinroulette.client.game.listeners.SpinFinishedListener;
 import main.java.pw.bitcoinroulette.library.Bet;
 import main.java.pw.bitcoinroulette.library.ClientGame;
+import main.java.pw.bitcoinroulette.library.ServerGame;
 
 public class GameCtrl implements ClientGame {
 	@FXML public AnchorPane boardPane;
@@ -68,9 +69,11 @@ public class GameCtrl implements ClientGame {
 	@FXML public TableColumn<Bet, Double> amountColumn;
 	@FXML public TableColumn<Bet, String> descriptionColumn;
 	@FXML public TableColumn<Bet, Button> deleteColumn;
+	@FXML public Button accountBtn;
 	
 	
 	public Main main;
+	public ServerGame serverGame;
 	public Coord[] numberToCoord = new Coord[37];
 	public HashMap<Coord, Integer> coordToNumber = new HashMap<Coord, Integer>();
 	public HashMap<Coord, Coord[]> coordToSelection = new HashMap<Coord, Coord[]>();
@@ -84,12 +87,15 @@ public class GameCtrl implements ClientGame {
 	public HashMap<Bet, ImageView> betToChip = new HashMap<Bet, ImageView>();
 	
 
-	public GameCtrl(Main main){
+	public GameCtrl(Main main, ServerGame serverGame){
 		this.main = main;
+		this.serverGame = serverGame;
 	}
 
 	/* Called after scene graph loads */
 	public void initialize(){
+		
+		accountBtn.setOnMouseClicked((e) -> main.setAccountScene());
 		
 		/* Bet table */
 		betTable.setPlaceholder(new Label("No Bets Placed"));
@@ -392,10 +398,6 @@ public class GameCtrl implements ClientGame {
 		rt.setOnFinished(new SpinFinishedListener(this, result));
 	}
 	
-
-	public void showAccountScene(){
-		main.stage.setScene(main.accountScene);
-	}
 
 
 	public void addBet(Bet b) {

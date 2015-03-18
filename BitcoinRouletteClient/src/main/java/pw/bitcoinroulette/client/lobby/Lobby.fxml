@@ -19,7 +19,7 @@
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="161.0" text="Name" />
           <TableColumn fx:id="playersCol" prefWidth="245.0" text="Players" />
-          <TableColumn fx:id="joinCol" prefWidth="122.0" text="Join" />
+          <TableColumn fx:id="joinCol" prefWidth="90.0" text="Join" />
         </columns>
       </TableView>
       <VBox layoutX="91.0" layoutY="432.0" prefHeight="139.0" prefWidth="248.0">

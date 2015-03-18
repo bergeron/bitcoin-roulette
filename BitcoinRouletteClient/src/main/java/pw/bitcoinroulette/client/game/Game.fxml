@@ -679,7 +679,7 @@
                                           <Font size="32.0" />
                                        </font>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#showAccountScene" prefHeight="71.0" prefWidth="1327.0" text="Account">
+                                    <Button fx:id="accountBtn" mnemonicParsing="false"  prefHeight="71.0" prefWidth="1327.0" text="Account">
                                        <font>
                                           <Font size="32.0" />
                                        </font>

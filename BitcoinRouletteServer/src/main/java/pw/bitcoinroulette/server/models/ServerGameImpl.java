@@ -5,13 +5,11 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,8 +23,8 @@ import main.java.pw.bitcoinroulette.library.ServerGame;
 @Table(name = "games")
 public class ServerGameImpl extends UnicastRemoteObject implements ServerGame {
 
-	private static final long serialVersionUID = -8990600027847804294L;
-	
+	private static final long serialVersionUID = -6114105589582888658L;
+
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	@Column(name = "gameId", unique = true, nullable = false)	
@@ -35,7 +33,7 @@ public class ServerGameImpl extends UnicastRemoteObject implements ServerGame {
 	@Column(name = "name")
 	private String name;
 	
-	@ManyToMany()
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<AuthPlayerImpl> players = new HashSet<AuthPlayerImpl>();
 	
 	@OneToMany(mappedBy = "serverGame")
@@ -52,10 +50,6 @@ public class ServerGameImpl extends UnicastRemoteObject implements ServerGame {
 	@Override
 	public String getName() throws RemoteException {
 		return name;
-	}
-	
-	public void setName(String name){
-		this.name = name;
 	}
 
 	@Override
