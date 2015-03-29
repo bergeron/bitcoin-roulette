@@ -1,5 +1,6 @@
 package main.java.pw.bitcoinroulette.server.bitcoin;
 
+import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -67,7 +68,11 @@ public class NewTransactionListener implements Observer {
 				if (player == null) {
 					System.err.printf("No player associated with address: %s\n", t.getAddress());
 				} else {
-					session.save(new TransactionImpl(txHash, t.getAmount(), conf, mainTx.getTime(), player));
+					try {
+						session.save(new TransactionImpl(txHash, t.getAmount(), conf, mainTx.getTime(), player));
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				}
 
 				session.getTransaction().commit();

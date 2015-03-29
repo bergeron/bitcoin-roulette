@@ -3,6 +3,7 @@ package main.java.pw.bitcoinroulette.client.game;
 
 import java.math.BigDecimal;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -47,9 +48,13 @@ import main.java.pw.bitcoinroulette.client.game.listeners.SelectorExitListener;
 import main.java.pw.bitcoinroulette.client.game.listeners.SpinFinishedListener;
 import main.java.pw.bitcoinroulette.library.Bet;
 import main.java.pw.bitcoinroulette.library.ClientGame;
+import main.java.pw.bitcoinroulette.library.OtherPlayer;
 import main.java.pw.bitcoinroulette.library.ServerGame;
 
-public class GameCtrl implements ClientGame {
+public class GameCtrl extends UnicastRemoteObject implements ClientGame {
+
+	private static final long serialVersionUID = -5860501913483886928L;
+	
 	@FXML public AnchorPane boardPane;
 	@FXML public GridPane grid;
 	@FXML public ImageView wheel;
@@ -70,6 +75,7 @@ public class GameCtrl implements ClientGame {
 	@FXML public TableColumn<Bet, String> descriptionColumn;
 	@FXML public TableColumn<Bet, Button> deleteColumn;
 	@FXML public Button accountBtn;
+	@FXML public Button lobbyBtn;
 	
 	
 	public Main main;
@@ -87,7 +93,7 @@ public class GameCtrl implements ClientGame {
 	public HashMap<Bet, ImageView> betToChip = new HashMap<Bet, ImageView>();
 	
 
-	public GameCtrl(Main main, ServerGame serverGame){
+	public GameCtrl(Main main, ServerGame serverGame) throws RemoteException {
 		this.main = main;
 		this.serverGame = serverGame;
 	}
@@ -96,6 +102,8 @@ public class GameCtrl implements ClientGame {
 	public void initialize(){
 		
 		accountBtn.setOnMouseClicked((e) -> main.setAccountScene());
+		lobbyBtn.setOnMouseClicked((e) -> main.setLobbyScene());
+		
 		
 		/* Bet table */
 		betTable.setPlaceholder(new Label("No Bets Placed"));
@@ -423,8 +431,13 @@ public class GameCtrl implements ClientGame {
 		}
 	}
 
-	@Override
 	public void spin(int result) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void betAdded(Bet b, OtherPlayer p) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

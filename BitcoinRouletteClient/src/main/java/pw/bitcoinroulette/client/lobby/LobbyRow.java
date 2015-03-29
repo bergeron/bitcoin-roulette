@@ -6,8 +6,10 @@ import java.util.List;
 
 import javafx.scene.control.Button;
 import main.java.pw.bitcoinroulette.client.Main;
+import main.java.pw.bitcoinroulette.library.Lobby;
 import main.java.pw.bitcoinroulette.library.OtherPlayer;
 import main.java.pw.bitcoinroulette.library.ServerGame;
+
 
 public class LobbyRow {
 
@@ -15,11 +17,16 @@ public class LobbyRow {
 	private String players;
 	private Button joinBtn;
 	
-	public LobbyRow(Main main, ServerGame sg){
+	public LobbyRow(Main main, Lobby lobby, ServerGame sg) {
 
 		this.joinBtn = new Button("Join");
-		this.joinBtn.setOnMouseClicked((e) -> main.setGameScene(sg));
-		
+		this.joinBtn.setOnMouseClicked((e) -> {	main.serverGame = sg;
+												try {
+													main.authPlayer.joinGame(sg);
+												} catch (Exception e1) {
+													e1.printStackTrace();
+												}
+												main.setGameScene();});
 		try{
 			this.name = sg.getName();
 			

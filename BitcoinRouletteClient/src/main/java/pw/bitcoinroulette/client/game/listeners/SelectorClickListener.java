@@ -35,24 +35,24 @@ public class SelectorClickListener implements EventHandler<MouseEvent> {
 		if (Arrays.asList(offBoard).contains(coord))
 			return;
 
-		String url = "";
+		String url = "main/java/pw/bitcoinroulette/client/images/";
 		switch (gameCtrl.currChip) {
 		case -1: /* No chip selected */
 			return;
 		case 0:
-			url = "pw/bitcoinroulette/gui/images/white_chip.png";
+			url += "white_chip.png";
 			break;
 		case 1:
-			url = "pw/bitcoinroulette/gui/images/red_chip.png";
+			url += "red_chip.png";
 			break;
 		case 2:
-			url = "pw/bitcoinroulette/gui/images/blue_chip.png";
+			url += "blue_chip.png";
 			break;
 		case 3:
-			url = "pw/bitcoinroulette/gui/images/green_chip.png";
+			url += "green_chip.png";
 			break;
 		case 4:
-			url = "pw/bitcoinroulette/gui/images/black_chip.png";
+			url += "black_chip.png";
 			break;
 		}
 
@@ -80,7 +80,7 @@ public class SelectorClickListener implements EventHandler<MouseEvent> {
 
 		Bet b;
 		try {
-			b = gameCtrl.main.authPlayer.makeBet(null, betAmount, payout, winningNumbers, gameCtrl.coordToDescription(coord));
+			b = gameCtrl.main.authPlayer.makeBet(gameCtrl.main.serverGame, betAmount, payout, winningNumbers, gameCtrl.coordToDescription(coord));
 												//TODO
 		} catch (RemoteException e) {
 			e.printStackTrace();

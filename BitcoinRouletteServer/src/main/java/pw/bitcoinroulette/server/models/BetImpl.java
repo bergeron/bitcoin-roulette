@@ -2,6 +2,8 @@ package main.java.pw.bitcoinroulette.server.models;
 
 
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -19,8 +21,10 @@ import main.java.pw.bitcoinroulette.library.OtherPlayer;
 
 @Entity
 @Table(name = "bets")
-public class BetImpl implements Bet {
+public class BetImpl extends UnicastRemoteObject implements Bet {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	@Column(name = "betId", unique = true, nullable = false)
@@ -48,7 +52,7 @@ public class BetImpl implements Bet {
 	private String description;
 	
 
-	public BetImpl(BigDecimal amount, int payout, Set<Integer> winning, String description){
+	public BetImpl(BigDecimal amount, int payout, Set<Integer> winning, String description) throws RemoteException{
 		this.payout = payout;
 		this.amount = amount;
 		this.winning = winning;

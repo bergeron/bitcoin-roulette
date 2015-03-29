@@ -62,7 +62,7 @@ public class LobbyCtrl {
 		}
 		
 		for (ServerGame sg : serverGames) {
-			LobbyRow lr = new LobbyRow(main, sg);
+			LobbyRow lr = new LobbyRow(main, lobby, sg);
 			rows.add(lr);
 		}
 	}

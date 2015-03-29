@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import main.java.pw.bitcoinroulette.library.AuthPlayer;
 import main.java.pw.bitcoinroulette.library.Lobby;
 import main.java.pw.bitcoinroulette.library.ServerGame;
 import main.java.pw.bitcoinroulette.server.models.ServerGameImpl;
@@ -61,5 +62,5 @@ public class LobbyImpl extends UnicastRemoteObject implements Lobby {
 		
 		return g;
 	}
-	
+
 }

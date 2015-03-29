@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import main.java.pw.bitcoinroulette.client.Main;
+import main.java.pw.bitcoinroulette.client.lobby.LobbyCtrl;
 import main.java.pw.bitcoinroulette.library.AuthPlayer;
 import main.java.pw.bitcoinroulette.library.Lobby;
 
@@ -93,7 +94,7 @@ public class LoginCtrl {
 				Dialog d = (Dialog) ae.getSource();
 				
 				try {
-					Object[] login = main.rouletteServer.login(username.getText(), password.getText());
+					Object[] login = main.loginServer.login(username.getText(), password.getText());
 					
 					if(login == null){
 						throw new RemoteException("Invalid username or password");
@@ -101,10 +102,11 @@ public class LoginCtrl {
 					
 					main.authPlayer = (AuthPlayer)login[0];
 					Lobby lobby = (Lobby)login[1];
-					main.setLobbyScene(lobby);
+					main.lobbyCtrl = new LobbyCtrl(main, lobby);
+					main.setLobbyScene();
 					
 				} catch (RemoteException e) {
-					
+					e.printStackTrace();
 					/* Wrong username pass */
 					validationError.setVisible(true);
 					password.clear();
@@ -129,7 +131,7 @@ public class LoginCtrl {
 				Dialog d = (Dialog) ae.getSource();
 				
 				try {
-					main.rouletteServer.register(username.getText(), password.getText());
+					main.loginServer.register(username.getText(), password.getText());
 				} catch (RemoteException e) {
 					
 					//TODO set to e.message.  username taken? password too short?

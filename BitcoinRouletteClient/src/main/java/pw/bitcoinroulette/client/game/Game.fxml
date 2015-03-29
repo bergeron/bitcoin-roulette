@@ -684,6 +684,11 @@
                                           <Font size="32.0" />
                                        </font>
                                     </Button>
+                                     <Button fx:id="lobbyBtn" mnemonicParsing="false"  prefHeight="71.0" prefWidth="1327.0" text="Lobby">
+                                       <font>
+                                          <Font size="32.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </VBox>
                            </children>

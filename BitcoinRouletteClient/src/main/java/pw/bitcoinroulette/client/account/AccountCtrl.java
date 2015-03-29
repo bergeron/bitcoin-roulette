@@ -30,8 +30,6 @@ import org.controlsfx.control.action.AbstractAction;
 import org.controlsfx.control.action.Action;
 import org.controlsfx.dialog.Dialog;
 
-
-
 public class AccountCtrl {
 	private Main main;
 	@FXML public Label balanceLabel;
@@ -46,7 +44,7 @@ public class AccountCtrl {
 	}
 
 	public void initialize() {
-		gameBtn.setOnMouseClicked((e) -> main.setGameScene(main.serverGame));
+		gameBtn.setOnMouseClicked((e) -> main.setGameScene());
 		
 		fromAddressCol.setCellValueFactory(new PropertyValueFactory<TransactionRow, String>("address"));
 		amountCol.setCellValueFactory(new PropertyValueFactory<TransactionRow, BigDecimal>("amount"));

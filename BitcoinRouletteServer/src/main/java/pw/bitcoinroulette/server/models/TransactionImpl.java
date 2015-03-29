@@ -1,6 +1,8 @@
 package main.java.pw.bitcoinroulette.server.models;
 
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +16,9 @@ import main.java.pw.bitcoinroulette.library.Transaction;
 
 @Entity
 @Table(name = "transactions")
-public class TransactionImpl implements Transaction {
+public class TransactionImpl extends UnicastRemoteObject implements Transaction {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
@@ -37,11 +41,11 @@ public class TransactionImpl implements Transaction {
 	@Column(name = "dateEpoch", nullable = false)
 	private long dateEpoch;
 
-	public TransactionImpl() {
+	public TransactionImpl() throws RemoteException {
 		super();
 	}
 
-	public TransactionImpl(String hash, BigDecimal amount, long confirmations, long dateEpoch, AuthPlayerImpl player) {
+	public TransactionImpl(String hash, BigDecimal amount, long confirmations, long dateEpoch, AuthPlayerImpl player) throws RemoteException{
 		this.hash = hash;
 		this.amount = amount;
 		this.confirmations = confirmations;

@@ -33,7 +33,7 @@ public class ServerGameImpl extends UnicastRemoteObject implements ServerGame {
 	@Column(name = "name")
 	private String name;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "games", fetch=FetchType.EAGER)
 	private Set<AuthPlayerImpl> players = new HashSet<AuthPlayerImpl>();
 	
 	@OneToMany(mappedBy = "serverGame")

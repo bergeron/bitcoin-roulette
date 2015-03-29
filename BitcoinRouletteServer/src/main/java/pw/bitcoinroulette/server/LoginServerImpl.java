@@ -6,7 +6,7 @@ import java.security.spec.InvalidKeySpecException;
 
 import main.java.pw.bitcoinroulette.library.AuthPlayer;
 import main.java.pw.bitcoinroulette.library.Lobby;
-import main.java.pw.bitcoinroulette.library.RouletteServer;
+import main.java.pw.bitcoinroulette.library.LoginServer;
 import main.java.pw.bitcoinroulette.server.models.AuthPlayerImpl;
 
 import org.hibernate.Session;
@@ -16,13 +16,13 @@ import org.hibernate.criterion.Restrictions;
 
 import com._37coins.bcJsonRpc.BitcoindInterface;
 
-public class RouletteServerImpl implements RouletteServer {
+public class LoginServerImpl implements LoginServer {
 
 	private SessionFactory sessionFactory;
 	private Lobby lobby;
 	private BitcoindInterface bitcoin;
 
-	protected RouletteServerImpl(BitcoindInterface bitcoin, SessionFactory sessionFactory) throws RemoteException {
+	protected LoginServerImpl(BitcoindInterface bitcoin, SessionFactory sessionFactory) throws RemoteException {
 		super();
 		this.bitcoin = bitcoin;
 		this.sessionFactory = sessionFactory;
@@ -56,6 +56,9 @@ public class RouletteServerImpl implements RouletteServer {
 				return false;
 			}
 
+			if(sessionFactory == null){
+				System.out.println("wtf");
+			}
 			AuthPlayerImpl p = new AuthPlayerImpl(username, hashedPassword);
 
 			session.beginTransaction();
@@ -80,7 +83,7 @@ public class RouletteServerImpl implements RouletteServer {
 
 		session.getTransaction().commit();
 		session.close();
-
+		
 		if (p == null) {
 			System.err.printf("No user: %s", username);
 			return null;
@@ -90,12 +93,15 @@ public class RouletteServerImpl implements RouletteServer {
 			if (PasswordHash.validatePassword(password, p.getPassword())) {
 				System.out.println("valid login");
 				return new Object[] { p, lobby };
+			} else {
+				System.out.println("wrong password");
+				return null;
 			}
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			System.out.println("err");
 			e.printStackTrace();
 			return null;
 		}
 
-		return null;
 	}
 }

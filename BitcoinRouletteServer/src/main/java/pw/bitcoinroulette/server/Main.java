@@ -11,7 +11,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
-import main.java.pw.bitcoinroulette.library.RouletteServer;
+import main.java.pw.bitcoinroulette.library.LoginServer;
 import main.java.pw.bitcoinroulette.library.ServerGame;
 import main.java.pw.bitcoinroulette.server.bitcoin.NewBlockListener;
 import main.java.pw.bitcoinroulette.server.bitcoin.NewTransactionListener;
@@ -54,6 +54,8 @@ public class Main {
 		StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 		SessionFactory sessionFactory = configuration.buildSessionFactory(ssrb.build());
 		
+		AuthPlayerImpl.sessionFactory = sessionFactory;
+		
 		/* Connect to bitcoind */
 		BitcoindInterface bitcoin;
 		try {
@@ -79,8 +81,8 @@ public class Main {
 		}
 
 		try {
-			RouletteServer rouletteServer = new RouletteServerImpl(bitcoin, sessionFactory);
-			RouletteServer stub = (RouletteServer) UnicastRemoteObject.exportObject(rouletteServer, 0);
+			LoginServer loginServer = new LoginServerImpl(bitcoin, sessionFactory);
+			LoginServer stub = (LoginServer) UnicastRemoteObject.exportObject(loginServer, 0);
 			Registry registry = LocateRegistry.getRegistry();
 			registry.rebind("RouletteServer", stub);
 			System.out.println("RouletteServer bound");
@@ -89,19 +91,5 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-//		Session session = sessionFactory.openSession();
-//		session.beginTransaction();
-//		
-//		ServerGame sg;
-//		try {
-//			sg = new ServerGameImpl("sg3");
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//			return;
-//		}
-//		
-//		session.save(sg);
-//		session.getTransaction().commit();
-//		session.close();
 	}
 }

@@ -7,6 +7,8 @@ import java.util.Set;
 
 public interface ServerGame extends Remote {
 
+	public Long getId() throws RemoteException;
+	
 	public String getName() throws RemoteException;
 	
 	public Set<OtherPlayer> getPlayers() throws RemoteException;

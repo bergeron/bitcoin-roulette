@@ -9,5 +9,5 @@ public interface Lobby extends Remote {
 	public List<ServerGame> lookupGame(String name, int limit) throws RemoteException;
 	
 	public ServerGame addGame(String name) throws RemoteException;
-
+	
 }

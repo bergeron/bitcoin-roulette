@@ -9,6 +9,7 @@ import java.rmi.registry.Registry;
 import java.util.Properties;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -21,20 +22,22 @@ import main.java.pw.bitcoinroulette.client.lobby.LobbyCtrl;
 import main.java.pw.bitcoinroulette.client.login.LoginCtrl;
 import main.java.pw.bitcoinroulette.library.AuthPlayer;
 import main.java.pw.bitcoinroulette.library.Lobby;
-import main.java.pw.bitcoinroulette.library.RouletteServer;
+import main.java.pw.bitcoinroulette.library.LoginServer;
 import main.java.pw.bitcoinroulette.library.ServerGame;
 
 
 public class Main extends Application {
 	public Stage stage;
-	public RouletteServer rouletteServer;
+	public LoginServer loginServer;
 	public AuthPlayer authPlayer;
 	public ServerGame serverGame;
+	public LobbyCtrl lobbyCtrl;
+	public GameCtrl gameCtrl;
 	
 	public Main(){
 		try {
 			Registry registry = LocateRegistry.getRegistry();
-			this.rouletteServer = (RouletteServer)registry.lookup("RouletteServer");
+			this.loginServer = (LoginServer)registry.lookup("RouletteServer");
 		} catch(RemoteException | NotBoundException e){
 			e.printStackTrace();
 		}
@@ -65,10 +68,10 @@ public class Main extends Application {
 		stage.setScene(loginScene);
 	}
 	
-	public void setLobbyScene(Lobby lobby) {
+	public void setLobbyScene() {
 		
 		FXMLLoader lobbyFxml = new FXMLLoader(getClass().getResource("lobby/Lobby.fxml"));
-		lobbyFxml.setController(new LobbyCtrl(this, lobby));
+		lobbyFxml.setController(lobbyCtrl);
 		Scene lobbyScene;
 		try {
 			lobbyScene = new Scene(lobbyFxml.load());
@@ -79,11 +82,20 @@ public class Main extends Application {
 		stage.setScene(lobbyScene);
 	}
 	
-	public void setGameScene(ServerGame sg){
-		this.serverGame = sg;
+	public void setGameScene(){
+		
+		if(serverGame == null){
+			System.err.println("No game loaded. Can't switch to game scene.");
+			return;
+		}
 		
 		FXMLLoader gameFxml = new FXMLLoader(getClass().getResource("game/Game.fxml"));
-		gameFxml.setController(new GameCtrl(this, sg));
+		try {
+			gameCtrl = new GameCtrl(this, serverGame);
+			gameFxml.setController(gameCtrl);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		Scene gameScene;
 		try {
 			gameScene = new Scene(gameFxml.load());
@@ -106,6 +118,7 @@ public class Main extends Application {
 			return;
 		}
 	    stage.setScene(accountScene);
+	    
 	}
 	
 	public static void main(String[] args){

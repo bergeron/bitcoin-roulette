@@ -16,6 +16,8 @@ public interface AuthPlayer extends Remote, OtherPlayer{
 
 	public Bet makeBet(ServerGame g, BigDecimal amount, int payout, HashSet<Integer> winning, String description) throws RemoteException;
 
-	String withdraw(String address, BigDecimal amount) throws RemoteException;
+	public String withdraw(String address, BigDecimal amount) throws RemoteException;
+	
+	public void joinGame(ServerGame sg) throws RemoteException;
 
 }
